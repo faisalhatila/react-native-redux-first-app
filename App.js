@@ -2,12 +2,17 @@ import React from "react";
 import { StyleSheet, View, StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import Routes from "./src/components/Routes";
-import store from "./src/config/store";
+import persist from "./src/config/store";
+import { PersistGate } from "redux-persist/integration/react";
 import Main from "./src/Main";
+// console.log(persist);
+const persistStore = persist();
 export default function App() {
   return (
-    <Provider store={store}>
-      <Main />
+    <Provider store={persistStore.store}>
+      <PersistGate loading={null} persistor={persistStore.persistor}>
+        <Main />
+      </PersistGate>
     </Provider>
   );
 }
