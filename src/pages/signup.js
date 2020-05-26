@@ -80,6 +80,8 @@ class signup extends Component {
           label={label}
           {...restInput}
         />
+        {console.log(error)}
+        <Text>{error}</Text>
       </View>
     );
   };
@@ -92,7 +94,7 @@ class signup extends Component {
         {/* <Form type="Signup" onAuthButtonPress={this.createNewUser} /> */}
         <View style={{ marginHorizontal: 30 }}>
           <Field
-            name="Name"
+            name="name"
             component={this.renderTextInput}
             placeholder="Name"
           />
@@ -126,8 +128,15 @@ class signup extends Component {
     );
   }
 }
-
+const validate = (values) => {
+  const errors = {};
+  if (!values.name) {
+    errors.Name = "Name Is Required";
+  }
+  return errors;
+};
 export default reduxForm({
   // a unique name for the form
   form: "register",
+  validate: validate,
 })(signup);
