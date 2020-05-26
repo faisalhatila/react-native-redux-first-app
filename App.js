@@ -5,6 +5,8 @@ import Routes from "./src/components/Routes";
 import persist from "./src/config/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Main from "./src/Main";
+import { YellowBox } from "react-native";
+YellowBox.ignoreWarnings(["Remote debugger"]);
 // console.log(persist);
 const persistStore = persist();
 export default function App() {

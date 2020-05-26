@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
   },
+  errorText: {
+    color: "#fff",
+    fontSize: 12,
+  },
 });
 class signup extends Component {
   signIn = () => {
@@ -80,8 +84,7 @@ class signup extends Component {
           label={label}
           {...restInput}
         />
-        {console.log(error)}
-        <Text>{error}</Text>
+        {touched && error && <Text style={styles.errorText}>{error}</Text>}
       </View>
     );
   };
@@ -94,7 +97,7 @@ class signup extends Component {
         {/* <Form type="Signup" onAuthButtonPress={this.createNewUser} /> */}
         <View style={{ marginHorizontal: 30 }}>
           <Field
-            name="name"
+            name="Name"
             component={this.renderTextInput}
             placeholder="Name"
           />
@@ -130,8 +133,14 @@ class signup extends Component {
 }
 const validate = (values) => {
   const errors = {};
-  if (!values.name) {
+  if (!values.Name) {
     errors.Name = "Name Is Required";
+  }
+  if (!values.email) {
+    errors.email = "Email Is Required";
+  }
+  if (!values.Password) {
+    errors.Password = "Password Is Required";
   }
   return errors;
 };
